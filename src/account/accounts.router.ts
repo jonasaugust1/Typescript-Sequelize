@@ -87,10 +87,11 @@ accountsRouter.delete("/:id",  async (req:Request, res: Response) => {
         if(account) {
             await AccountService.remove(id);
 
-            res.sendStatus(204).send(account)
+            res.status(204);
+        } else {
+            res.status(404).send("Account not found");
         }
 
-        res.sendStatus(404).send("Account not found")
     } catch (error: any) {
         res.status(500).send(error.message);
     }
