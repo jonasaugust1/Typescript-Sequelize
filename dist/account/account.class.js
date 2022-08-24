@@ -2,10 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Account = void 0;
 class Account {
-    constructor(number, agency) {
+    constructor(id, number, agency, client) {
+        this.id = id;
         this.number = number;
         this.agency = agency;
         this.balance = 0;
+        this.client = client;
+    }
+    getId() {
+        return this.id;
     }
     getNumber() {
         return this.number;
@@ -23,7 +28,8 @@ class Account {
         return this.balance;
     }
     deposit(value) {
-        this.balance += value;
+        value > 0 ? this.balance += value : 0;
+        return this.getBalance();
     }
     withdraw(value) {
         if (this.balance > value) {
@@ -32,6 +38,7 @@ class Account {
         else {
             console.log('Não há saldo suficiente para sacar');
         }
+        return this.getBalance();
     }
 }
 exports.Account = Account;
